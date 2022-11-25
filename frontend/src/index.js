@@ -1,26 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
-const App = () => {
-  return (
-    <div className="App">
-      <nav className="navigation">
-        <a>로고</a>
-        <ul>
-          <a><li>이수과목체크</li></a>
-          <a><li>졸업요건검사</li></a>
-          <a><li>수강과목추천</li></a>
-          <a><li>로그인/회원가입</li></a>
-        </ul>
-      </nav>
-    </div >
-  );
-}
-
+import Join from './pages/Join';
+import Landing from './pages/Landing';
+import Login from './pages/Login';
+import Main from './pages/Main';
+import PasswordChange from './pages/PasswordChange';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Routes>
+      <Route path='/login' element={<Login />} />
+      <Route path='/landing' element={<Landing />} />
+      <Route path='/join' element={<Join />} />
+      <Route path='/password-change' element={<PasswordChange />} />
+      <Route path='/' element={<Main />} />
+    </Routes>
   </React.StrictMode>
 );

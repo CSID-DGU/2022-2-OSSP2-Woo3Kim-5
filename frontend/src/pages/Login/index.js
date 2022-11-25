@@ -1,7 +1,7 @@
 import React from "react";
 import './Signin.css';
 
-function Signin(props){
+function Login(props){
     return(
         <div className="login-form">
             <form>
@@ -16,4 +16,4 @@ function Signin(props){
     );
 }
 
-export default Signin;
+export default Login;

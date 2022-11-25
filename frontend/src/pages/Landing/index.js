@@ -1,7 +1,7 @@
 import React from "react";
-import './Startpage.css';
+import './index.css';
 
-function Startpage(props){
+function Landing(props){
     return(
         <div className="Startpage">
             <div className="side">
@@ -20,4 +20,4 @@ function Startpage(props){
     );
 }
 
-export default Startpage;
+export default Landing;

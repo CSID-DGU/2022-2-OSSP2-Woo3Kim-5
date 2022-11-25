@@ -1,7 +1,7 @@
 import React from 'react';
-import './Pwchange.css';
+import './index.css';
 
-function Pwchange(props){
+function PasswordChange(props){
     return(
         <div className="register-form">
           <form>
@@ -29,4 +29,4 @@ function Pwchange(props){
       )
 }
 
-export default Pwchange;
+export default PasswordChange;

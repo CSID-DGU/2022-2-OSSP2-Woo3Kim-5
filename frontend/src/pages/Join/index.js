@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 
-function RegisterPage(props) {
+function Join(props) {
     return(
       <div className="register-form">
         <form>
@@ -49,4 +49,4 @@ function RegisterPage(props) {
     )
 }
 
-export default RegisterPage;
+export default Join;
