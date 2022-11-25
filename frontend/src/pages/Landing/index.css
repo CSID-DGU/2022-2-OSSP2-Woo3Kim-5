@@ -6,7 +6,7 @@
 .side{
     display: block;
     position: fixed;
-    left: 1600px;
+    left: 1100px;
 }
 
 .side > .login{

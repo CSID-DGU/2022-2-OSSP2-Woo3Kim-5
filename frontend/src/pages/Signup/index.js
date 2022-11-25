@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './index.css';
 
 const Signup = () => {
@@ -15,7 +16,7 @@ const Signup = () => {
     // axios.post('/login', {id, password}).then((res) => {
     //   navigate('/')
     // })
-    navigate('/');
+    navigate('/login');
   }
 
   return (
