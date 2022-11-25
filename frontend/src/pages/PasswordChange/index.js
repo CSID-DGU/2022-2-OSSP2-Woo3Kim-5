@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../systems/Header';
 import './index.css';
 
-function PasswordChange(props){
+const PasswordChange = () => {
     return(
         <div className="register-form">
           <Header />

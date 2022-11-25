@@ -2,10 +2,9 @@ import React from 'react';
 import Header from '../../systems/Header';
 import './index.css';
 
-function Join(props) {
+const Join = () => {
   return (
     <div className="register-form">
-
       <Header />
       <form>
         <input type="text" name="email" className="text-field" placeholder="이메일" onChange={() => this._changeEmailSelect()} /> @ {" "}
@@ -17,16 +16,12 @@ function Join(props) {
           <option value='nate.com'> nate.com </option>
           <option value='dgu.ac.kr'> dgu.ac.kr </option>
           <option value='write'> 직접 입력 </option>
-
-
         </select>
         <input type="submit" value="중복확인" className="submit-btn" /><br />
         <input type="password" name="pw" className="text-field" placeholder="비밀번호" /><br />
         <input type="password" name="confirmpw" className="text-field" placeholder="비밀번호 확인" /><br />
         <input type="text" name="id" className="text-field" margin-left="20px" placeholder="학번" /> {" "}
         <input type="text" name="admissionyear" className="text-field" placeholder="입학년도" /><br />
-
-
         <p>수강영어레벨</p>
         <select name="englv" className="select">
           <option key="basic">선택</option>
@@ -38,7 +33,6 @@ function Join(props) {
         </select>
         <br /><br />
         <input type="text" name="eng" className="text-field" placeholder="외국어성적(토익)" />
-
         <p>복수전공여부</p>
         <select name="minor" className="select">
           <option key="basic">선택</option>
