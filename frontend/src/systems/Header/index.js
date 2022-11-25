@@ -7,20 +7,20 @@ const Header = () => {
     const navigate = useNavigate();
 
     const onClickMenu = (type) => () => {
-        if(type === 'MAIN'){
-            navigate('/main');
+        if(type === 'CHECK'){
+            navigate('/check');
             return;
         }
-        if(type === 'SIGNUP'){
-            navigate('/signup');
+        if(type === 'TEST'){
+            navigate('/test');
             return;
         }
-        if(type === 'LOGIN'){
-            navigate('/login');
+        if(type === 'RECOMMEND'){
+            navigate('/recommend');
             return;
         }
-        if(type === 'PASSWORD_CHANGE'){
-            navigate('/password-change');
+        if(type === 'MAINPAGE'){
+            navigate('/mainpage');
             return;
         }
     }
@@ -28,10 +28,10 @@ const Header = () => {
     return <Root>
         로고
         <ul>
-            <li onClick={onClickMenu('MAIN')} >이수과목체크</li>
-            <li onClick={onClickMenu('SIGNUP')} >졸업요건검사</li>
-            <li onClick={onClickMenu('LOGIN')} >수강과목추천</li>
-            <li onClick={onClickMenu('PASSWORD_CHANGE')} >비밀번호 변경</li>
+            <li onClick={onClickMenu('CHECK')} >이수과목체크</li>
+            <li onClick={onClickMenu('TEST')} >졸업요건검사</li>
+            <li onClick={onClickMenu('RECOMMEND')} >수강과목추천</li>
+            <li onClick={onClickMenu('MAINPAGE')} >비밀번호 변경</li>
         </ul></Root>
 }
 
