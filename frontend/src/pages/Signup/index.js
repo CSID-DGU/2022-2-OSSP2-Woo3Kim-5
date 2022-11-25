@@ -1,11 +1,9 @@
 import React from 'react';
-import Header from '../../systems/Header';
 import './index.css';
 
 const Signup = () => {
   return (
     <div className="Signup-form">
-      <Header />
       <form>
         <input type="text" name="email" className="text-field" placeholder="이메일" onChange={() => this._changeEmailSelect()} /> @ {" "}
         <select name="email_select" className="select">

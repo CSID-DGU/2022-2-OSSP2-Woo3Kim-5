@@ -12,10 +12,10 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path='/login' element={<Login />} />
-      <Route path='/' element={<Landing />} />
       <Route path='/signup' element={<Signup />} />
       <Route path='/password-change' element={<PasswordChange />} />
       <Route path='/main' element={<Main />} />
+      <Route path='/' element={<Landing />} />
     </Routes>
   </BrowserRouter>
 );

@@ -8,7 +8,7 @@ const Header = () => {
 
     const onClickMenu = (type) => () => {
         if(type === 'MAIN'){
-            navigate('/');
+            navigate('/main');
             return;
         }
         if(type === 'SIGNUP'){
@@ -28,9 +28,9 @@ const Header = () => {
     return <Root>
         로고
         <ul>
-            <li onClick={onClickMenu('MAIN')} >메인</li>
-            <li onClick={onClickMenu('SIGNUP')} >회원가입</li>
-            <li onClick={onClickMenu('LOGIN')} >로그인</li>
+            <li onClick={onClickMenu('MAIN')} >이수과목체크</li>
+            <li onClick={onClickMenu('SIGNUP')} >졸업요건검사</li>
+            <li onClick={onClickMenu('LOGIN')} >수강과목추천</li>
             <li onClick={onClickMenu('PASSWORD_CHANGE')} >비밀번호 변경</li>
         </ul></Root>
 }
