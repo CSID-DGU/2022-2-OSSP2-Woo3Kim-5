@@ -3,7 +3,7 @@ import './index.css';
 
 const PasswordChange = () => {
     return(
-        <div className="form">
+        <div className="change-form">
           <form>
             <h2>아이디/비밀번호 찾기</h2><br/>
             <h3><b>아이디 찾기</b></h3>
