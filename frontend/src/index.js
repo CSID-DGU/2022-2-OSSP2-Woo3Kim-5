@@ -15,7 +15,7 @@ root.render(
       <Route path='/signup' element={<Signup />} />
       <Route path='/password-change' element={<PasswordChange />} />
       <Route path='/main' element={<Main />} />
-      <Route path='/landing' element={<Landing />} />
+      <Route path='/' element={<Landing />} />
     </Routes>
   </BrowserRouter>
 );
