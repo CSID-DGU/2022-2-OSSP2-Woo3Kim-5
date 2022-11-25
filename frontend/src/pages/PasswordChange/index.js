@@ -2,8 +2,6 @@ import React from 'react';
 import './index.css';
 
 const PasswordChange = () => {
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const onSubmit = () => {
@@ -25,7 +23,7 @@ const PasswordChange = () => {
 
         <h3><b>비밀번호 찾기</b></h3>
         이메일<br />
-        <input type="text" name="email" className="text-field" onChange={() => this._changeEmailSelect()} /> {" "}
+        <input type="text" name="email" className="text-field"/> {" "}
         <input onClick={onSubmit} type="submit" value="코드전송" className="submit-btn" /><br />
         코드<br />
         <input type="text" name="code" className="text-field" /> {" "}
