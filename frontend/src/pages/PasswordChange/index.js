@@ -4,7 +4,7 @@ import './index.css';
 
 const PasswordChange = () => {
     return(
-        <div className="register-form">
+        <div className="form">
           <Header />
           <form>
             <h2>아이디/비밀번호 찾기</h2><br/>

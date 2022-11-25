@@ -2,9 +2,9 @@ import React from 'react';
 import Header from '../../systems/Header';
 import './index.css';
 
-const Join = () => {
+const Signup = () => {
   return (
-    <div className="register-form">
+    <div className="Signup-form">
       <Header />
       <form>
         <input type="text" name="email" className="text-field" placeholder="이메일" onChange={() => this._changeEmailSelect()} /> @ {" "}
@@ -46,4 +46,4 @@ const Join = () => {
   )
 }
 
-export default Join;
+export default Signup;

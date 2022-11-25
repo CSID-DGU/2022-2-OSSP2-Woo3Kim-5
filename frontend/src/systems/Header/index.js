@@ -11,8 +11,8 @@ const Header = () => {
             navigate('/');
             return;
         }
-        if(type === 'JOIN'){
-            navigate('/join');
+        if(type === 'SIGNUP'){
+            navigate('/signup');
             return;
         }
         if(type === 'LOGIN'){
@@ -26,10 +26,10 @@ const Header = () => {
     }
 
     return <Root>
-        헤더
+        로고
         <ul>
             <li onClick={onClickMenu('MAIN')} >메인</li>
-            <li onClick={onClickMenu('JOIN')} >회원가입</li>
+            <li onClick={onClickMenu('SIGNUP')} >회원가입</li>
             <li onClick={onClickMenu('LOGIN')} >로그인</li>
             <li onClick={onClickMenu('PASSWORD_CHANGE')} >비밀번호 변경</li>
         </ul></Root>
