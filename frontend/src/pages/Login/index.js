@@ -12,7 +12,7 @@ const Login = () => {
     // axios.post('/login', {id, password}).then((res) => {
     //   navigate('/')
     // })
-    navigate('/');
+    navigate('/main');
   }
 
   return (

@@ -37,7 +37,7 @@ const Signup = () => {
         <input value={id} onChange={(e) => setId(e.target.value)} type="text" className="text-field" margin-left="20px" placeholder="학번" /> {" "}
         <input value={admissionyear} onChange={(e) => setAdmissionyear(e.target.value)} type="text"className="text-field" placeholder="입학년도" /><br />
         <p>수강영어레벨</p>
-        <select value={Englv} onChange={(e) => setEnglv(e.target.value)} className="select">
+        <select value={englv} onChange={(e) => setEnglv(e.target.value)} className="select">
           <option key="basic">선택</option>
           <option key="s0">S0</option>
           <option key="s1">S1</option>
