@@ -1,8 +1,10 @@
 import React from 'react'
+import Header from '../../systems/Header';
 
 const Main = () => {
     return (
         <div className="App">
+            <Header />
             <nav className="navigation">
                 <a>로고</a>
                 <ul>

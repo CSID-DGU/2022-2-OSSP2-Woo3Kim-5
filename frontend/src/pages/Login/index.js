@@ -1,9 +1,11 @@
 import React from "react";
+import Header from "../../systems/Header";
 import './index.css';
 
 function Login(props){
     return(
         <div className="login-form">
+        <Header />
             <form>
                 <input type="text" name="id" class="text-field" placeholder="아이디"/>
                 <input type="text" name="pw" class="text-field" placeholder="비밀번호"/>

@@ -1,9 +1,12 @@
 import React from "react";
+import Header from "../../systems/Header";
 import './index.css';
 
 function Landing(props){
     return(
         <div className="Startpage">
+            
+            <Header />
             <div className="side">
                 <div className="login">
                     <a href="/" className="logo">

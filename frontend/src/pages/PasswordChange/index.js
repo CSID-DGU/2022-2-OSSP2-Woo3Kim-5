@@ -1,9 +1,11 @@
 import React from 'react';
+import Header from '../../systems/Header';
 import './index.css';
 
 function PasswordChange(props){
     return(
         <div className="register-form">
+          <Header />
           <form>
             <h2>아이디/비밀번호 찾기</h2><br/>
             <h3><b>아이디 찾기</b></h3>
