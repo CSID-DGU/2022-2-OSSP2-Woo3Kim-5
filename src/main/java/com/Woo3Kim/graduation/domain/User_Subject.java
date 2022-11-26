@@ -1,22 +1,22 @@
 package com.Woo3Kim.graduation.domain;
 
 public class User_Subject {
-    private String UserId;
-    private String SubjectName;
+    private String userId;
+    private String subjectName;
 
     public String getUserId() {
-        return UserId;
+        return userId;
     }
 
     public void setUserId(String userId) {
-        UserId = userId;
+        this.userId = userId;
     }
 
     public String getSubjectName() {
-        return SubjectName;
+        return subjectName;
     }
 
     public void setSubjectName(String subjectName) {
-        SubjectName = subjectName;
+        this.subjectName = subjectName;
     }
 }

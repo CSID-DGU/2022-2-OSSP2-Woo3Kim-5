@@ -2,7 +2,15 @@ package com.Woo3Kim.graduation.domain;
 
 public class DesiredJob_RelatedArea {
     private String JobName;
-    private String AreaName;
+    private String relatedArea;
+
+    public String getRelatedArea() {
+        return relatedArea;
+    }
+
+    public void setRelatedArea(String relatedArea) {
+        this.relatedArea = relatedArea;
+    }
 
     public String getJobName() {
         return JobName;
@@ -10,13 +18,5 @@ public class DesiredJob_RelatedArea {
 
     public void setJobName(String jobName) {
         JobName = jobName;
-    }
-
-    public String getAreaName() {
-        return AreaName;
-    }
-
-    public void setAreaName(String areaName) {
-        AreaName = areaName;
     }
 }

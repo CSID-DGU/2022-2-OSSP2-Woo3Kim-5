@@ -1,22 +1,22 @@
 package com.Woo3Kim.graduation.domain;
 
 public class Subject_RelatedArea {
-    private String SubjectName;
-    private String AreaName;
+    private String subject;
+    private String relatedArea;
 
-    public String getSubjectName() {
-        return SubjectName;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setSubjectName(String subjectName) {
-        SubjectName = subjectName;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
-    public String getAreaName() {
-        return AreaName;
+    public String getRelatedArea() {
+        return relatedArea;
     }
 
-    public void setAreaName(String areaName) {
-        AreaName = areaName;
+    public void setRelatedArea(String relatedArea) {
+        this.relatedArea = relatedArea;
     }
 }

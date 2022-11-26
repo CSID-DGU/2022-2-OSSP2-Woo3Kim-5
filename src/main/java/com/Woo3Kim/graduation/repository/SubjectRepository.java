@@ -1,8 +1,8 @@
 package com.Woo3Kim.graduation.repository;
 
+import com.Woo3Kim.graduation.domain.DesiredJob;
 import com.Woo3Kim.graduation.domain.Subject;
 import com.Woo3Kim.graduation.domain.Subject_RelatedArea;
-
 import java.util.List;
 
 public interface SubjectRepository {
@@ -12,5 +12,5 @@ public interface SubjectRepository {
 
     //Subject_RelatedArea 관련
     void saveSubjectRelatedArea(Subject_RelatedArea subjectRelatedArea);    //과목의 관련영역 저장
-    List<Subject_RelatedArea> getSubjectByRelatedArea(String AreaName);     //관련영역의 모든 과목을 조회
+    List<Subject> getSubjectByRelatedArea(DesiredJob desiredJob);           //희망 직무와 연관된 과목들을 조회
 }
