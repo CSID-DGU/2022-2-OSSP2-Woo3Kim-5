@@ -1,0 +1,44 @@
+package com.Woo3Kim.graduation.domain;
+
+
+import javax.persistence.Entity;
+
+@Entity
+public class Subject {
+    private String subjectName; //과목 이름
+    private int grade;          //이수 대상
+    private String kind;        //전공, 교양 종류
+    private String description; //과목 설명
+
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+}
