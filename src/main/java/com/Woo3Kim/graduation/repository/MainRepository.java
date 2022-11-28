@@ -1,6 +1,6 @@
 package com.Woo3Kim.graduation.repository;
 
-import com.Woo3Kim.graduation.domain.Main;
+import com.Woo3Kim.graduation.dto.Main;
 
 import java.util.Optional;
 

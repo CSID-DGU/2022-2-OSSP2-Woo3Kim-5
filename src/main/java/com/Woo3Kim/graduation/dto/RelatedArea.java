@@ -1,4 +1,4 @@
-package com.Woo3Kim.graduation.domain;
+package com.Woo3Kim.graduation.dto;
 
 public class RelatedArea {
     private String AreaName;

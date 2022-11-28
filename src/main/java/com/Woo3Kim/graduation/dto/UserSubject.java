@@ -1,6 +1,6 @@
-package com.Woo3Kim.graduation.domain;
+package com.Woo3Kim.graduation.dto;
 
-public class User_Subject {
+public class UserSubject {
     private String userId;
     private String subjectName;
 

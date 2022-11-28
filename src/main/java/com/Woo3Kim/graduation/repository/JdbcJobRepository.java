@@ -1,26 +1,24 @@
 package com.Woo3Kim.graduation.repository;
 
-import com.Woo3Kim.graduation.domain.DesiredJob;
-import com.Woo3Kim.graduation.domain.Main;
+import com.Woo3Kim.graduation.dto.Job;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class JdbcDesiredJobRepository implements DesiredJobRepository{
+public class JdbcJobRepository implements JobRepository {
     private final DataSource dataSource;
 
-    public JdbcDesiredJobRepository(DataSource dataSource) {
+    public JdbcJobRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
     //희망 직무 저장
     @Override
-    public void save(DesiredJob desiredJob) {
-        String sql = "insert into DesiredJob(JobName) values ?";
+    public void save(Job job) {
+        String sql = "insert into Job(JobName) values ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -28,7 +26,7 @@ public class JdbcDesiredJobRepository implements DesiredJobRepository{
         try {
             conn = DataSourceUtils.getConnection(dataSource);
             pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, desiredJob.getJobName());
+            pstmt.setString(1, job.getJobName());
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
@@ -44,8 +42,8 @@ public class JdbcDesiredJobRepository implements DesiredJobRepository{
     }
 
     @Override
-    public List<DesiredJob> getAllDesiredJob() {
-        String sql = "select * from DesiredJob";
+    public List<Job> getAllJob() {
+        String sql = "select * from Job";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -54,13 +52,13 @@ public class JdbcDesiredJobRepository implements DesiredJobRepository{
             conn = DataSourceUtils.getConnection(dataSource);
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
-            List<DesiredJob> desiredJobs = new ArrayList<>();
+            List<Job> jobs = new ArrayList<>();
             while(rs.next()) {
-                DesiredJob desiredjob = new DesiredJob();
+                Job desiredjob = new Job();
                 desiredjob.setJobName(rs.getString("JobName"));
-                desiredJobs.add(desiredjob);
+                jobs.add(desiredjob);
             }
-            return desiredJobs;
+            return jobs;
         } catch (Exception e) {
             throw new IllegalStateException(e);
         } finally {
@@ -68,8 +66,8 @@ public class JdbcDesiredJobRepository implements DesiredJobRepository{
         }
     }
 
-    @Override
-    public List<DesiredJob> getDesiredJobByAreaName(String AreaName) {
+    /*@Override
+    public List<Job> getJobByAreaName(String AreaName) {
         String sql = "select * from DesiredJob_RelatedArea where relatedArea = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -80,19 +78,19 @@ public class JdbcDesiredJobRepository implements DesiredJobRepository{
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, AreaName);
             rs = pstmt.executeQuery();
-            List<DesiredJob> desiredJobs = new ArrayList<>();
+            List<Job> jobs = new ArrayList<>();
             while(rs.next()) {
-                DesiredJob desiredjob = new DesiredJob();
+                Job desiredjob = new Job();
                 desiredjob.setJobName(rs.getString("JobName"));
-                desiredJobs.add(desiredjob);
+                jobs.add(desiredjob);
             }
-            return desiredJobs;
+            return jobs;
         } catch (Exception e) {
             throw new IllegalStateException(e);
         } finally {
             close(conn, pstmt, rs);
         }
-    }
+    }*/
 
     private void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
         try {

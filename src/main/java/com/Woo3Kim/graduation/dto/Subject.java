@@ -1,13 +1,12 @@
-package com.Woo3Kim.graduation.domain;
+package com.Woo3Kim.graduation.dto;
 
 
 import javax.persistence.Entity;
 
-@Entity
 public class Subject {
     private String subjectName; //과목 이름
     private int grade;          //이수 대상
-    private String kind;        //전공, 교양 종류
+    private String kind;        //전공, 교양 종류 - "major", "GE", "basic" 으로 구분
     private String description; //과목 설명
 
     public String getSubjectName() {

@@ -1,31 +1,32 @@
 package com.Woo3Kim.graduation.repository;
 
-import com.Woo3Kim.graduation.dto.Main;
+import com.Woo3Kim.graduation.dto.RelatedArea;
+import com.Woo3Kim.graduation.dto.Subject;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.Optional;
 
-public class JdbcMainRepository implements MainRepository{
+public class JdbcRelatedAreaRepository implements RelatedAreaRepository {
     private final DataSource dataSource;
 
-    public JdbcMainRepository(DataSource dataSource) {
+    public JdbcRelatedAreaRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    //메인 페이지의 서비스 소개와 개발자 소개 데이터 입력
+
     @Override
-    public void save(Main main) {
-        String sql = "insert into Main(serviceIntroduction, creatorIntroduction) values (?, ?)";
+    public void save(RelatedArea relatedArea) {
+        String sql = "insert into RelatedArea(areaName) values ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+
         try {
             conn = DataSourceUtils.getConnection(dataSource);
             pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, main.getServiceIndroduction());
-            pstmt.setString(2, main.getCreatorIndroduction());
+            pstmt.setString(1, relatedArea.getAreaName());
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
@@ -41,21 +42,21 @@ public class JdbcMainRepository implements MainRepository{
     }
 
     @Override
-    public Optional<Main> getMain() {
-        String sql = "select * from Main where MainId = ?";
+    public Optional<RelatedArea> getRelatedAreaByAreaName(String areaName) {
+        String sql = "select * from RelatedArea where areaName = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+
         try {
             conn = DataSourceUtils.getConnection(dataSource);
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, 1);                 //db의 첫 번째 데이터 값만 사용한다고 가정
+            pstmt.setString(1, areaName);
             rs = pstmt.executeQuery();
             if (rs.next()) {
-                Main main = new Main();
-                main.setServiceIndroduction(rs.getString("serviceIntroduction"));
-                main.setCreatorIndroduction(rs.getString("creatorIntroduction"));
-                return Optional.of(main);
+                RelatedArea relatedArea = new RelatedArea();
+                relatedArea.setAreaName(rs.getString("areaName"));
+                return Optional.of(relatedArea);
             } else {
                 return Optional.empty();
             }

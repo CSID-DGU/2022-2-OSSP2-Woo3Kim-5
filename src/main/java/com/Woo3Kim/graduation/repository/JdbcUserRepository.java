@@ -1,31 +1,35 @@
 package com.Woo3Kim.graduation.repository;
 
-import com.Woo3Kim.graduation.dto.Main;
+import com.Woo3Kim.graduation.dto.Job;
+import com.Woo3Kim.graduation.dto.Subject;
+import com.Woo3Kim.graduation.dto.User;
+import com.Woo3Kim.graduation.dto.UserSubject;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import javax.sql.DataSource;
 import java.sql.*;
-import java.util.Optional;
+import java.util.List;
 
-public class JdbcMainRepository implements MainRepository{
+public class JdbcUserRepository implements UserRepository {
     private final DataSource dataSource;
 
-    public JdbcMainRepository(DataSource dataSource) {
+    public JdbcUserRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    //메인 페이지의 서비스 소개와 개발자 소개 데이터 입력
     @Override
-    public void save(Main main) {
-        String sql = "insert into Main(serviceIntroduction, creatorIntroduction) values (?, ?)";
+    public void saveUser(User user) {
+        String sql = "insert into User(userId, pwd, job) values (?, ?, ?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+
         try {
             conn = DataSourceUtils.getConnection(dataSource);
             pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, main.getServiceIndroduction());
-            pstmt.setString(2, main.getCreatorIndroduction());
+            pstmt.setString(1, user.getUserId());
+            pstmt.setString(2, user.getPwd());
+            pstmt.setString(3, user.getJob());
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
@@ -41,30 +45,31 @@ public class JdbcMainRepository implements MainRepository{
     }
 
     @Override
-    public Optional<Main> getMain() {
-        String sql = "select * from Main where MainId = ?";
+    public void updateUserJob(User user, Job job) {
+        String sql = "update User set job = ? where userId = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+
         try {
             conn = DataSourceUtils.getConnection(dataSource);
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, 1);                 //db의 첫 번째 데이터 값만 사용한다고 가정
-            rs = pstmt.executeQuery();
+            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, job.getJobName());
+            pstmt.setString(2, user.getUserId());
+            pstmt.executeUpdate();
+            rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
-                Main main = new Main();
-                main.setServiceIndroduction(rs.getString("serviceIntroduction"));
-                main.setCreatorIndroduction(rs.getString("creatorIntroduction"));
-                return Optional.of(main);
+
             } else {
-                return Optional.empty();
+                throw new SQLException("저장 실패");
             }
         } catch (Exception e) {
-            throw new IllegalStateException(e);
+
         } finally {
             close(conn, pstmt, rs);
         }
     }
+
 
     private void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
         try {

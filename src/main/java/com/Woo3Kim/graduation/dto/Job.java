@@ -1,7 +1,7 @@
-package com.Woo3Kim.graduation.domain;
+package com.Woo3Kim.graduation.dto;
 
-public class DesiredJob {
-    private String JobName;
+public class Job {
+    private String JobName;     //직무 이름
 
     public String getJobName() {
         return JobName;
