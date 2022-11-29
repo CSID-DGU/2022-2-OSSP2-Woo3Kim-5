@@ -3,11 +3,13 @@ package com.Woo3Kim.graduation.repository;
 import com.Woo3Kim.graduation.dto.RelatedArea;
 import com.Woo3Kim.graduation.dto.Subject;
 import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.Optional;
 
+@Repository
 public class JdbcRelatedAreaRepository implements RelatedAreaRepository {
     private final DataSource dataSource;
 

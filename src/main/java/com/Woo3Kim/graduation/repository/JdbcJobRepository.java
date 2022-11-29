@@ -1,13 +1,17 @@
 package com.Woo3Kim.graduation.repository;
 
 import com.Woo3Kim.graduation.dto.Job;
+import com.Woo3Kim.graduation.dto.Subject;
 import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+@Repository
 public class JdbcJobRepository implements JobRepository {
     private final DataSource dataSource;
 
@@ -59,6 +63,33 @@ public class JdbcJobRepository implements JobRepository {
                 jobs.add(desiredjob);
             }
             return jobs;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
+    public Optional<Job> getJobByJobName(String JobName) {
+        String sql = "select * from Job where JobName = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DataSourceUtils.getConnection(dataSource);
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, JobName);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                Job job = new Job();
+                job.setJobName(rs.getString("JobName"));
+                return Optional.of(job);
+
+            } else {
+                return Optional.empty();
+            }
         } catch (Exception e) {
             throw new IllegalStateException(e);
         } finally {

@@ -13,14 +13,15 @@ public interface SubjectRepository {
 
     //SubjectRelatedArea 관련
     void saveSubjectRelatedArea(Subject subject, RelatedArea relatedArea);    //과목과 관련된 영역 저장
-    List<Subject> getSubjectByRelatedArea(RelatedArea relatedArea);           //희망 직무와 연관된 과목들을 조회
+    List<Subject> getSubjectByRelatedArea(String areaName);           //희망 직무와 연관된 과목들을 조회
 
     //SubjectJob 관련
     void saveSubjectJob(Subject subject, Job job);                  //직무와 관련된 과목 정보 저장
-    List<Subject> getSubjectByJob(Subject subject, Job job);        //직무와 관련된 과목들 조회
+    List<Subject> getSubjectByJob(Job job);                         //직무와 관련된 과목들 조회
     
     //UserSubject 관련
     void saveUserSubject(User user, Subject subject);                //사용자의 이수과목 저장
+    void deleteUserSubject(User user);                               //사용자의 이수 과목 모두 삭제
     List<Subject> getAllSubjectOfUser(User user);                    //사용자의 이수과목 모두 조회
     List<Subject> getMajorOfUser(User user);                         //사용자가 이수한 과목 중 전공 과목 조회
     List<Subject> getGEOfUser(User user);                            //사용자가 이수한 과목 중 교양 과목 조회
