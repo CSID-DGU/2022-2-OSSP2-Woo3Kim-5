@@ -20,7 +20,7 @@ public class JdbcUserRepository implements UserRepository {
 
     @Override
     public void saveUser(User user) {
-        String sql = "insert into User(userId, pwd, job) values (?, ?, ?)";
+        String sql = "insert into User(userId, pwd, job, email, studentId, admissionYear, engLv, engScore, minor) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -31,6 +31,12 @@ public class JdbcUserRepository implements UserRepository {
             pstmt.setString(1, user.getUserId());
             pstmt.setString(2, user.getPwd());
             pstmt.setString(3, user.getJob());
+            pstmt.setString(4, user.getEmail());
+            pstmt.setString(5, user.getStudentId());
+            pstmt.setString(6, user.getAdmissionYear());
+            pstmt.setString(7, user.getEngLv());
+            pstmt.setInt(8, user.getEngScore());
+            pstmt.setString(9, user.getMinor());
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
@@ -62,6 +68,12 @@ public class JdbcUserRepository implements UserRepository {
                 user.setUserId(rs.getString("userId"));
                 user.setPwd(rs.getString("pwd"));
                 user.setJob(rs.getString("job"));
+                user.setEmail(rs.getString("email"));
+                user.setStudentId(rs.getString("studentId"));
+                user.setAdmissionYear(rs.getString("admissionYear"));
+                user.setEngLv(rs.getString("engLv"));
+                user.setEngScore(rs.getInt("engScore"));
+                user.setMinor(rs.getString("minor"));
                 return Optional.of(user);
             } else {
                 return Optional.empty();

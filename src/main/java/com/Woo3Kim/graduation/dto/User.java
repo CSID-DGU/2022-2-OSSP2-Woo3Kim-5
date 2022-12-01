@@ -8,7 +8,7 @@ public class User {
     private String studentId;       //학번
     private String admissionYear;   //입학년도
     private String engLv;           //영어레벨
-    private float engScore;         //외국어성적
+    private int engScore;         //외국어성적
     private String minor;           //복수전공
 
 
@@ -69,11 +69,11 @@ public class User {
         this.engLv = engLv;
     }
 
-    public float getEngScore() {
+    public int getEngScore() {
         return engScore;
     }
 
-    public void setEngScore(float engScore) {
+    public void setEngScore(int engScore) {
         this.engScore = engScore;
     }
 
