@@ -14,7 +14,7 @@ const Header = () => {
             return;
         }
         if(type === 'CHECK'){
-            navigate('/check');
+            navigate('/subject-check');
             return;
         }
         if(type === 'TEST'){
