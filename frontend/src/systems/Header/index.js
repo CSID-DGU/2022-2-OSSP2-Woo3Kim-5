@@ -7,6 +7,10 @@ const Header = () => {
     const navigate = useNavigate();
 
     const onClickMenu = (type) => () => {
+        if(type === 'LOGO'){
+            navigate('/');
+            return;
+        }
         if(type === 'CHECK'){
             navigate('/check');
             return;
@@ -26,13 +30,12 @@ const Header = () => {
     }
 
     return <Root>
-        로고
-        <ul>
-            <li onClick={onClickMenu('CHECK')} >이수과목체크</li>
-            <li onClick={onClickMenu('TEST')} >졸업요건검사</li>
-            <li onClick={onClickMenu('RECOMMEND')} >수강과목추천</li>
-            <li onClick={onClickMenu('MAINPAGE')} >비밀번호 변경</li>
-        </ul></Root>
+        <LogoImg src={testlogo} onClick={onClickMenu('LOGO')}/>
+            <div onClick={onClickMenu('CHECK')} >이수과목체크</div>
+            <div onClick={onClickMenu('TEST')} >졸업요건검사</div>
+            <div onClick={onClickMenu('RECOMMEND')} >수강과목추천</div>
+            <div onClick={onClickMenu('MAINPAGE')} >비밀번호 변경</div>
+        </Root>
 }
 
 export default Header;
