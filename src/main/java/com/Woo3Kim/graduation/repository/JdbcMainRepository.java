@@ -2,11 +2,13 @@ package com.Woo3Kim.graduation.repository;
 
 import com.Woo3Kim.graduation.dto.Main;
 import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.Optional;
 
+@Repository
 public class JdbcMainRepository implements MainRepository{
     private final DataSource dataSource;
 

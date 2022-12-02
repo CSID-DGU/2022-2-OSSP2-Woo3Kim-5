@@ -2,6 +2,7 @@ package com.Woo3Kim.graduation.repository;
 
 import com.Woo3Kim.graduation.dto.*;
 import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class JdbcSubjectRepository implements SubjectRepository {
 
     private final DataSource dataSource;
@@ -129,7 +131,7 @@ public class JdbcSubjectRepository implements SubjectRepository {
     }
 
     @Override
-    public List<Subject> getSubjectByRelatedArea(RelatedArea relatedArea) {
+    public List<Subject> getSubjectByRelatedArea(String areaName) {
         String sql = "select subjectName, description, kind, grade from Subject, SubjectRelatedArea" +
                 "where Subject.subjectName = SubjectRelatedArea.subjectName and SubjectRelatedArea.areaName = ?";
         Connection conn = null;
@@ -139,7 +141,7 @@ public class JdbcSubjectRepository implements SubjectRepository {
         try {
             conn = DataSourceUtils.getConnection(dataSource);
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, relatedArea.getAreaName());
+            pstmt.setString(1, areaName);
             rs = pstmt.executeQuery();
             List<Subject> subjects = new ArrayList<>();
             while(rs.next()) {
@@ -185,7 +187,7 @@ public class JdbcSubjectRepository implements SubjectRepository {
     }
 
     @Override
-    public List<Subject> getSubjectByJob(Subject subject, Job job) {
+    public List<Subject> getSubjectByJob(Job job) {
         String sql = "select s.subjectName, s.description, s.kind, s.grade from Subject s, SubjectJob sj" +
                 "where s.subjectName = sj.subjectName and sj.JobName = ?";
         Connection conn = null;
@@ -232,6 +234,31 @@ public class JdbcSubjectRepository implements SubjectRepository {
 
             } else {
                 throw new SQLException("저장 실패");
+            }
+        } catch (Exception e) {
+
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
+    public void deleteUserSubject(User user) {
+        String sql = "delete from UserSubject where userId = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DataSourceUtils.getConnection(dataSource);
+            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, user.getUserId());
+            pstmt.executeUpdate();
+            rs = pstmt.getGeneratedKeys();
+            if (rs.next()) {
+
+            } else {
+                throw new SQLException("삭제 실패");
             }
         } catch (Exception e) {
 

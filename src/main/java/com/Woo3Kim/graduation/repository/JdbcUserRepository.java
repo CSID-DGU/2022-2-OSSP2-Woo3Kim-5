@@ -3,13 +3,14 @@ package com.Woo3Kim.graduation.repository;
 import com.Woo3Kim.graduation.dto.Job;
 import com.Woo3Kim.graduation.dto.Subject;
 import com.Woo3Kim.graduation.dto.User;
-import com.Woo3Kim.graduation.dto.UserSubject;
 import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
-import java.util.List;
+import java.util.Optional;
 
+@Repository
 public class JdbcUserRepository implements UserRepository {
     private final DataSource dataSource;
 
@@ -19,7 +20,7 @@ public class JdbcUserRepository implements UserRepository {
 
     @Override
     public void saveUser(User user) {
-        String sql = "insert into User(userId, pwd, job) values (?, ?, ?)";
+        String sql = "insert into User(userId, pwd, job, email, studentId, admissionYear, engLv, engScore, minor) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -30,6 +31,12 @@ public class JdbcUserRepository implements UserRepository {
             pstmt.setString(1, user.getUserId());
             pstmt.setString(2, user.getPwd());
             pstmt.setString(3, user.getJob());
+            pstmt.setString(4, user.getEmail());
+            pstmt.setString(5, user.getStudentId());
+            pstmt.setString(6, user.getAdmissionYear());
+            pstmt.setString(7, user.getEngLv());
+            pstmt.setInt(8, user.getEngScore());
+            pstmt.setString(9, user.getMinor());
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
@@ -39,6 +46,40 @@ public class JdbcUserRepository implements UserRepository {
             }
         } catch (Exception e) {
 
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
+    public Optional<User> getUser(String userId) {
+        String sql = "select * from User where UserId = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DataSourceUtils.getConnection(dataSource);
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userId);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                User user = new User();
+                user.setUserId(rs.getString("userId"));
+                user.setPwd(rs.getString("pwd"));
+                user.setJob(rs.getString("job"));
+                user.setEmail(rs.getString("email"));
+                user.setStudentId(rs.getString("studentId"));
+                user.setAdmissionYear(rs.getString("admissionYear"));
+                user.setEngLv(rs.getString("engLv"));
+                user.setEngScore(rs.getInt("engScore"));
+                user.setMinor(rs.getString("minor"));
+                return Optional.of(user);
+            } else {
+                return Optional.empty();
+            }
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
         } finally {
             close(conn, pstmt, rs);
         }

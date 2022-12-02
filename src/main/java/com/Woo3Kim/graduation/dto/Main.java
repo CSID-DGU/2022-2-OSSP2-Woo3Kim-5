@@ -1,7 +1,7 @@
 package com.Woo3Kim.graduation.dto;
 
 public class Main {
-    private int mainId;                     //DB 식별 번호
+    private int id;                         //DB 식별키
     private String serviceIndroduction;     //서비스 소개
     private String creatorIndroduction;     //개발자 소개
 
@@ -21,11 +21,11 @@ public class Main {
         this.creatorIndroduction = creatorIndroduction;
     }
 
-    public int getMainId() {
-        return mainId;
+    public int getId() {
+        return id;
     }
 
-    public void setMainId(int mainId) {
-        this.mainId = mainId;
+    public void setId(int id) {
+        this.id = id;
     }
 }
