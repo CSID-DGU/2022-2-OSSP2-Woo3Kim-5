@@ -25,8 +25,8 @@ const Header = () => {
             navigate('/recommend');
             return;
         }
-        if(type === 'MAINPAGE'){
-            navigate('/mainpage');
+        if(type === 'MYPAGE'){
+            navigate('/mypage');
             return;
         }
     }
@@ -36,7 +36,7 @@ const Header = () => {
             <div onClick={onClickMenu('CHECK')} >이수과목체크</div>
             <div onClick={onClickMenu('TEST')} >졸업요건검사</div>
             <div onClick={onClickMenu('RECOMMEND')} >수강과목추천</div>
-            <div onClick={onClickMenu('MAINPAGE')} >비밀번호 변경</div>
+            <div onClick={onClickMenu('MYPAGE')} >마이페이지</div>
         </Root>
 }
 
