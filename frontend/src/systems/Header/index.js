@@ -1,6 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Root } from './styled';
+import { Root, LogoImg } from './styled';
+import testlogo from '../../assets/images/testlogo.png';
+
 
 const Header = () => {
 
@@ -8,7 +10,7 @@ const Header = () => {
 
     const onClickMenu = (type) => () => {
         if(type === 'LOGO'){
-            navigate('/');
+            navigate('/main');
             return;
         }
         if(type === 'CHECK'){

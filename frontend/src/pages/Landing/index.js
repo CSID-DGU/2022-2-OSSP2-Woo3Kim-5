@@ -1,5 +1,6 @@
 import React from "react";
 import './index.css';
+import logo1 from '../../assets/images/testlogo.png';
 
 const Landing = () => {
 
@@ -7,7 +8,7 @@ const Landing = () => {
     <div className="side">
       <div className="login">
         <a href="/" className="logo">
-          <img src="/testlogo.png" alt="로고"></img>
+          <img src={logo1} alt="로고"></img>
         </a>
         <a href="/login" className="button login">로그인</a>
         <a href="/signup" className="button register">회원가입</a>
