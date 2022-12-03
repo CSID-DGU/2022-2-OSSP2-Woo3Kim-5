@@ -39,5 +39,8 @@ public class UserController {
                        @RequestParam("engScore") int engScore, @RequestParam("minor") String minor) {
 
         userService.saveUserData(userId, pwd, job, email, studentId, admissionYear, engLv, engScore, minor);
+
+        //성공시와 실패 시
+        return "join";
     }
 }
