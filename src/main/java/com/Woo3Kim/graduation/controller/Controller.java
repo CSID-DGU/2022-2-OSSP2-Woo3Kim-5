@@ -4,10 +4,8 @@ import com.Woo3Kim.graduation.service.JobService;
 import com.Woo3Kim.graduation.service.MainService;
 import com.Woo3Kim.graduation.service.SubjectService;
 import com.Woo3Kim.graduation.service.UserService;
-import net.bytebuddy.utility.dispatcher.JavaDispatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -48,7 +46,6 @@ public class Controller {
 
         return "check";     //이수과목 체크 완료 후 이동할 페이지 주소
     }
-
 
     //수강과목 추천
     @GetMapping("/recommendation")

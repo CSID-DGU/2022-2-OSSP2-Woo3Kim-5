@@ -47,7 +47,7 @@ public class SubjectService {
         }
     }
 
-    //모든 이수과목 조회
+    //모든 과목 조회
     public List<Subject> getAllSubject() {
         return subjectRepository.getAllSubject();
     }
@@ -91,7 +91,7 @@ public class SubjectService {
         return userCount / totalCount;
     }
 
-    //희망직무에 따른 과목들 조회 - 과목들과 각 과목에 관련영역들 출력
+    //희망직무에 따른 과목들 조회 - 과목들과 각 과목의 관련영역들 출력
     public List<Subject> subjectByJob(String jobName) {
         job = jobRepository.getJobByJobName(jobName).get();
 
