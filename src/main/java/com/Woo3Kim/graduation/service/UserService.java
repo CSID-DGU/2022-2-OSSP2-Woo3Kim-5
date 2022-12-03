@@ -40,7 +40,7 @@ public class UserService {
 		return user.getPwd();
     }
 
-    //로그인
+    //로그인 - *** session에 userId Attribute add 필요 ***
     public void login(String inputId, String inputPwd) {
     	if(inputPwd.equals(userRepository.getUser(inputId).get().getPwd())) {
     		pwdConcord = true;

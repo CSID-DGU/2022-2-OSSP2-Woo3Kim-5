@@ -38,6 +38,11 @@ public class SubjectService {
         subjectRepository.save(subject);
     }
 
+    //DB에서 과목 이름에 해당하는 Subject 객체 조회
+    public Subject getSubjectBySubjectName(String subjectName) {
+        return subjectRepository.getSubjectBySubjectName(subjectName).get();
+    }
+
     //사용자 이수과목 업로드 - 기존 사용자의 이수과목을 모두 삭제하고 새로 저장
     public void uploadUserSubject(String userId, List<Subject> subjects) {
         user = userRepository.getUser(userId).get();
