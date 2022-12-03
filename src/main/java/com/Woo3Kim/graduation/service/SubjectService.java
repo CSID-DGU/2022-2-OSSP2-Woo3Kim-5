@@ -29,11 +29,11 @@ public class SubjectService {
     }
 
     //DB에 과목 저장
-    public void saveSubject(String subjectName, String kind, String description, int grade) {
-        subject.setSubjectName(subjectName);
-        subject.setKind(kind);
-        subject.setDescription(description);
-        subject.setGrade(grade);
+    public void saveSubject(Subject subject) {
+        subject.setSubjectName(subject.getSubjectName());
+        subject.setKind(subject.getKind());
+        subject.setDescription(subject.getDescription());
+        subject.setGrade(subject.getGrade());
 
         subjectRepository.save(subject);
     }
