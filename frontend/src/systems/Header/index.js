@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Root, LogoImg } from './styled';
-import testlogo from '../../assets/images/testlogo.png';
+import logo from '../../assets/images/logo.png';
 
 
 const Header = () => {
@@ -32,7 +32,7 @@ const Header = () => {
     }
 
     return <Root>
-        <LogoImg src={testlogo} onClick={onClickMenu('LOGO')}/>
+        <LogoImg src={logo} onClick={onClickMenu('LOGO')}/>
             <div onClick={onClickMenu('CHECK')} >이수과목체크</div>
             <div onClick={onClickMenu('TEST')} >졸업요건검사</div>
             <div onClick={onClickMenu('RECOMMEND')} >수강과목추천</div>
