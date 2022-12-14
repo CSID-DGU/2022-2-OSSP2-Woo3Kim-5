@@ -10,6 +10,7 @@ public class User {
     private String engLv;           //영어레벨
     private int engScore;         //외국어성적
     private String minor;           //복수전공
+    private int unit;               //수강 학점
 
 
 
@@ -83,5 +84,13 @@ public class User {
 
     public void setMinor(String minor) {
         this.minor = minor;
+    }
+
+    public int getUnit() {
+        return unit;
+    }
+
+    public void setUnit(int unit) {
+        this.unit = unit;
     }
 }

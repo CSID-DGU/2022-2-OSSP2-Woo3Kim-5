@@ -8,6 +8,7 @@ public class Subject {
     private int grade;          //이수 대상
     private String kind;        //전공, 교양 종류 - "major", "GE", "basic" 으로 구분
     private String description; //과목 설명
+    private int unit;           //과목 학점
 
     public String getSubjectName() {
         return subjectName;
@@ -39,5 +40,13 @@ public class Subject {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getUnit() {
+        return unit;
+    }
+
+    public void setUnit(int unit) {
+        this.unit = unit;
     }
 }
