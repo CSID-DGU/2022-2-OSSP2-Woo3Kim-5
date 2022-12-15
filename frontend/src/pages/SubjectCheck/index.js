@@ -27,6 +27,7 @@ const SubjectCheck = () => {
     <div className="information">
       <Header />
       <div className="content">
+        <h2>이수과목 업로드</h2>
         <div className="guide">
           <img src={logo} alt="엑셀가이드"></img>
         </div>
