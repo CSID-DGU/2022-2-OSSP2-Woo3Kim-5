@@ -1,4 +1,30 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 .information{
-    width: auto;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content{
+    text-align: center;
+    padding-top: 20vh;
+}
+
+.guide{
+    text-align: center;
+}
+
+.submit-btn{
+    color: #ffffff;
+    font-size: 14px;
+    background-color: rgb(223, 218, 218);
+    margin-bottom: 30px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 70px;
 }
