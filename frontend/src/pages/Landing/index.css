@@ -6,7 +6,8 @@
 .side{
     display: block;
     position: fixed;
-    left: 1100px;
+    top: 100px;
+    left: 1400px;
 }
 
 .side > .login{
@@ -58,6 +59,11 @@
 .side > .login > p.find {
 	float: right;
     text-align: right;
+}
+
+.section{
+    width:100%;
+
 }
 
 .text-field{
