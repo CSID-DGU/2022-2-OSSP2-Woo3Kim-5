@@ -1,7 +1,7 @@
 export const HeaderCategory = [
     {
         title: "이수과목체크",
-        url: "#",
+        url: "/subject-check",
         cName: "header-links"
     },
     {
@@ -16,7 +16,7 @@ export const HeaderCategory = [
     },
     {
         title: "로그인/회원가입",
-        url: "#",
+        url: "/login",
         cName: "header-links-mobile"
     }
 ];
