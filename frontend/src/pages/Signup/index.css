@@ -33,6 +33,11 @@
     width: 100px;
 }
 
+.submit-btn:hover {
+    background-color: #151516;
+    color: #fff;
+}
+
 .links{
     text-align: center;
 }
