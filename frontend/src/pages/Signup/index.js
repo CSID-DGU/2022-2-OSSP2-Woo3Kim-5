@@ -21,6 +21,7 @@ const Signup = () => {
 
   return (
     <div className="Signup-form">
+      <h2>회원가입</h2><br/>
       <form>
         <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" className="text-field" placeholder="이메일" /> @ {" "}
         <select name="email_select" className="select">
