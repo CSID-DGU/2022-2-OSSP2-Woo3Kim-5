@@ -8,7 +8,7 @@ public class User {
     private String studentId;       //학번
     private String admissionYear;   //입학년도
     private String engLv;           //영어레벨
-    private int engScore;         //외국어성적
+    private int engScore;           //외국어성적
     private String minor;           //복수전공
     private int unit;               //수강 학점
 

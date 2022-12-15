@@ -52,7 +52,7 @@ public class JdbcUserRepository implements UserRepository {
     }
 
     @Override
-    public Optional<User> getUser(String userId) {
+    public Optional<User> getUserById(String userId) {
         String sql = "select * from User where UserId = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;

@@ -5,10 +5,13 @@ import com.Woo3Kim.graduation.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private User user;
+	public UserService userService;
+	private User user;
     private boolean pwdConcord;
 
     @Autowired
@@ -33,7 +36,7 @@ public class UserService {
 
     //비밀번호 찾기
     public String findPwd(String inputId) {
-    	user = userRepository.getUser(inputId).get();
+    	user = userRepository.getUserById(inputId).get();
 
 		//이메일에 비밀번호 보내기(work in progress)
 
@@ -42,11 +45,18 @@ public class UserService {
 
     //로그인 - *** session에 userId Attribute add 필요 ***
     public void login(String inputId, String inputPwd) {
-    	if(inputPwd.equals(userRepository.getUser(inputId).get().getPwd())) {
+    	if(inputPwd.equals(userRepository.getUserById(inputId).get().getPwd())) {
     		pwdConcord = true;
     	}
     	else {
     		pwdConcord = false;
     	}
     }
+
+	//사용자 아이디를 통해 유저 객체 찾기
+	public Optional<User> getUserById(String userId) {
+		Optional<User> user = userRepository.getUserById(userId);
+
+		return user;
+	}
 }

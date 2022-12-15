@@ -1,14 +1,13 @@
 package com.Woo3Kim.graduation.controller;
 
+import com.Woo3Kim.graduation.dto.User;
 import com.Woo3Kim.graduation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
@@ -19,28 +18,29 @@ public class UserController {
         this.userService = userService;
     }
 
-    //마이페이지
-    @GetMapping("/mypage")
-    public String myPage() {
-        return "mypage";    //마이페이지 위치
-    }
-
-    //회원가입 페이지
-    @GetMapping("/join")
-    public String join() {
-        return "join";
-    }
-
-    //회원가입 등록페이지
+    //회원가입
     @PostMapping("/join")
-    public String join(@RequestParam("userId") String userId, @RequestParam("pwd") String pwd, @RequestParam("job") String job,
-                       @RequestParam("email") String email, @RequestParam("studentId") String studentId,
-                       @RequestParam("admissionYear") String admissionYear, @RequestParam("engLv") String engLv,
-                       @RequestParam("engScore") int engScore, @RequestParam("minor") String minor) {
+    public String join(User user) {
+        String result = null;
 
-        userService.saveUserData(userId, pwd, job, email, studentId, admissionYear, engLv, engScore, minor);
+        String userId = user.getUserId();
+        String pwd = user.getPwd();
+        String job = user.getJob();
+        String email = user.getEmail();
+        String studentId = user.getStudentId();
+        String admissionYear = user.getAdmissionYear();
+        String engLv = user.getEngLv();
+        int engScore = user.getEngScore();
+        String minor = user.getMinor();
 
-        //성공시와 실패 시
-        return "join";
+        User temp = userService.getUserById(userId).get();
+
+        //사용자 정보가 이미 존재하는지
+        if (temp == null) {
+            userService.saveUserData(userId, pwd, job, email, studentId, admissionYear, engLv, engScore, minor);
+            return "회원가입이 완료되었습니다.";
+        } else {
+            return "회원 정보가 이미 존재합니다.";
+        }
     }
 }
