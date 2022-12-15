@@ -20,17 +20,18 @@ public class UserService {
     }
 
    //회원가입
-    public void saveUserData(String userId, String pwd, String job, String email, String studentId, String admissionYear, String engLv, int engScore, String minor) {
-    	user.setUserId(userId);
-    	user.setPwd(pwd);
-    	user.setJob(job);
-    	user.setEmail(email);
-    	user.setStudentId(studentId);
-    	user.setAdmissionYear(admissionYear);
-    	user.setEngLv(engLv);
-    	user.setEngScore(engScore);
-    	user.setMinor(minor);
-    	
+    public void saveUserData(User user) {
+    	user.setUserId(user.getUserId());
+    	user.setPwd(user.getPwd());
+    	user.setJob(user.getJob());
+    	user.setEmail(user.getEmail());
+    	user.setStudentId(user.getStudentId());
+    	user.setAdmissionYear(user.getAdmissionYear());
+    	user.setEngLv(user.getEngLv());
+    	user.setEngScore(user.getEngScore());
+		user.setMinor(user.getMinor());
+    	user.setUnit(user.getUnit());
+
     	userRepository.saveUser(user);
     }
 
@@ -43,7 +44,7 @@ public class UserService {
 		return user.getPwd();
     }
 
-    //로그인 - *** session에 userId Attribute add 필요 ***
+    //로그인
     public void login(String inputId, String inputPwd) {
     	if(inputPwd.equals(userRepository.getUserById(inputId).get().getPwd())) {
     		pwdConcord = true;

@@ -64,4 +64,14 @@ public class SubjectController {
 
         return rateList;
     }
+
+    //사용자의 남은 과목 리턴
+    @GetMapping("getRestSubjects")
+    public List<Subject> getRestSubjects(User user) {
+        String userId = user.getUserId();
+
+        List<Subject> subjects = subjectService.getRestSubject(userId);
+        return subjects;
+    }
 }
+

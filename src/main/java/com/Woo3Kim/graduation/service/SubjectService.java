@@ -45,7 +45,7 @@ public class SubjectService {
 
     //사용자 이수과목 업로드 - 기존 사용자의 이수과목을 모두 삭제하고 새로 저장
     public void uploadUserSubject(String userId, List<Subject> subjects) {
-        user = userRepository.getUser(userId).get();
+        user = userRepository.getUserById(userId).get();
         subjectRepository.deleteUserSubject(user);
         for (int i = 0; i < subjects.size(); i++) {
             subjectRepository.saveUserSubject(user, subjects.get(i));
@@ -62,7 +62,7 @@ public class SubjectService {
         int totalCount;
         int userCount;
 
-        user = userRepository.getUser(userId).get();      //userId를 통해 user객체 가져오기
+        user = userRepository.getUserById(userId).get();      //userId를 통해 user객체 가져오기
 
         totalCount = subjectRepository.getAllSubject().size();
         userCount = subjectRepository.getAllSubjectOfUser(user).size();
@@ -75,7 +75,7 @@ public class SubjectService {
         int totalCount;
         int userCount;
 
-        user = userRepository.getUser(userId).get();
+        user = userRepository.getUserById(userId).get();
 
         totalCount = subjectRepository.getAllSubject().size();
         userCount = subjectRepository.getGEOfUser(user).size();
@@ -88,7 +88,7 @@ public class SubjectService {
         int totalCount;
         int userCount;
 
-        user = userRepository.getUser(userId).get();
+        user = userRepository.getUserById(userId).get();
 
         totalCount = subjectRepository.getAllSubject().size();
         userCount = subjectRepository.getBasicOfUser(user).size();
@@ -101,5 +101,12 @@ public class SubjectService {
         job = jobRepository.getJobByJobName(jobName).get();
 
         return subjectRepository.getSubjectByJob(job);
+    }
+
+    //사용자의 남은 과목 모두 조회
+    public List<Subject> getRestSubject(String userId) {
+        user = userRepository.getUserById(userId).get();
+
+        return subjectRepository.getRestSubject(user);
     }
 }

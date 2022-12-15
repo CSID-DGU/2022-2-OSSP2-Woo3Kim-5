@@ -26,4 +26,5 @@ public interface SubjectRepository {
     List<Subject> getMajorOfUser(User user);                         //사용자가 이수한 과목 중 전공 과목 조회
     List<Subject> getGEOfUser(User user);                            //사용자가 이수한 과목 중 교양 과목 조회
     List<Subject> getBasicOfUser(User user);                         //사용자가 이수한 과목 중 기본소양 과목 조회
+    List<Subject> getRestSubject(User user);                         //남은 과목 모두 조회
 }

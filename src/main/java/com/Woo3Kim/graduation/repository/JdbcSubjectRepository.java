@@ -21,7 +21,7 @@ public class JdbcSubjectRepository implements SubjectRepository {
 
     @Override
     public void save(Subject subject) {
-        String sql = "insert into Subject(subjectName, grade, kind, description) values (?, ?, ?, ?)";
+        String sql = "insert into Subject(subjectName, grade, kind, description, unit) values (?, ?, ?, ?, ?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -33,6 +33,7 @@ public class JdbcSubjectRepository implements SubjectRepository {
             pstmt.setInt(2, subject.getGrade());
             pstmt.setString(3, subject.getKind());
             pstmt.setString(4, subject.getDescription());
+            pstmt.setInt(5, subject.getUnit());
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
@@ -65,6 +66,7 @@ public class JdbcSubjectRepository implements SubjectRepository {
                 subject.setDescription(rs.getString("description"));
                 subject.setKind(rs.getString("kind"));
                 subject.setGrade(rs.getInt("grade"));
+                subject.setUnit(rs.getInt("unit"));
                 return Optional.of(subject);
             } else {
                 return Optional.empty();
@@ -94,6 +96,7 @@ public class JdbcSubjectRepository implements SubjectRepository {
                 subject.setGrade(rs.getInt("grade"));
                 subject.setKind(rs.getString("kind"));
                 subject.setDescription(rs.getString("description"));
+                subject.setUnit(rs.getInt("unit"));
                 subjects.add(subject);
             }
             return subjects;
@@ -132,8 +135,8 @@ public class JdbcSubjectRepository implements SubjectRepository {
 
     @Override
     public List<Subject> getSubjectByRelatedArea(String areaName) {
-        String sql = "select subjectName, description, kind, grade from Subject, SubjectRelatedArea" +
-                "where Subject.subjectName = SubjectRelatedArea.subjectName and SubjectRelatedArea.areaName = ?";
+        String sql = "select s.subjectName, s.description, s.kind, s.grade from Subject s, SubjectRelatedArea sr" +
+                "where s.subjectName = sr.subjectName and sr.areaName = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -188,7 +191,7 @@ public class JdbcSubjectRepository implements SubjectRepository {
 
     @Override
     public List<Subject> getSubjectByJob(Job job) {
-        String sql = "select s.subjectName, s.description, s.kind, s.grade from Subject s, SubjectJob sj" +
+        String sql = "select s.subjectName, s.description, s.kind, s.grade, s.unit from Subject s, SubjectJob sj" +
                 "where s.subjectName = sj.subjectName and sj.JobName = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -206,6 +209,7 @@ public class JdbcSubjectRepository implements SubjectRepository {
                 subjectTemp.setDescription(rs.getString("description"));
                 subjectTemp.setKind(rs.getString("kind"));
                 subjectTemp.setGrade(rs.getInt("grade"));
+                subjectTemp.setUnit(rs.getInt("unit"));
                 subjects.add(subjectTemp);
             }
             return subjects;
@@ -269,7 +273,7 @@ public class JdbcSubjectRepository implements SubjectRepository {
 
     @Override
     public List<Subject> getAllSubjectOfUser(User user) {
-        String sql = "select s.subjectName, s.description, s.kind, s.grade from Subject s, UserSubject us" +
+        String sql = "select s.subjectName, s.description, s.kind, s.grade, s.unit from Subject s, UserSubject us" +
                 "where s.subjectName = us.subjectName and us.userId = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -287,6 +291,7 @@ public class JdbcSubjectRepository implements SubjectRepository {
                 subject.setDescription(rs.getString("description"));
                 subject.setKind(rs.getString("kind"));
                 subject.setGrade(rs.getInt("grade"));
+                subject.setUnit(rs.getInt("unit"));
                 subjects.add(subject);
             }
             return subjects;
@@ -299,7 +304,7 @@ public class JdbcSubjectRepository implements SubjectRepository {
 
     @Override
     public List<Subject> getMajorOfUser(User user) {
-        String sql = "select s.subjectName, s.description, s.kind, s.grade from Subject s, UserSubject us" +
+        String sql = "select s.subjectName, s.description, s.kind, s.grade, s.unit from Subject s, UserSubject us" +
                 "where s.subjectName = us.subjectName and us.userId = ? and s.kind = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -318,6 +323,7 @@ public class JdbcSubjectRepository implements SubjectRepository {
                 subject.setDescription(rs.getString("description"));
                 subject.setKind(rs.getString("kind"));
                 subject.setGrade(rs.getInt("grade"));
+                subject.setUnit(rs.getInt("unit"));
                 subjects.add(subject);
             }
             return subjects;
@@ -330,7 +336,7 @@ public class JdbcSubjectRepository implements SubjectRepository {
 
     @Override
     public List<Subject> getGEOfUser(User user) {
-        String sql = "select s.subjectName, s.description, s.kind, s.grade from Subject s, UserSubject us" +
+        String sql = "select s.subjectName, s.description, s.kind, s.grade, s.unit from Subject s, UserSubject us" +
                 "where s.subjectName = us.subjectName and us.userId = ? and s.kind = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -349,6 +355,7 @@ public class JdbcSubjectRepository implements SubjectRepository {
                 subject.setDescription(rs.getString("description"));
                 subject.setKind(rs.getString("kind"));
                 subject.setGrade(rs.getInt("grade"));
+                subject.setUnit(rs.getInt("unit"));
                 subjects.add(subject);
             }
             return subjects;
@@ -361,7 +368,7 @@ public class JdbcSubjectRepository implements SubjectRepository {
 
     @Override
     public List<Subject> getBasicOfUser(User user) {
-        String sql = "select s.subjectName, s.description, s.kind, s.grade from Subject s, UserSubject us" +
+        String sql = "select s.subjectName, s.description, s.kind, s.grade, s.unit from Subject s, UserSubject us" +
                 "where s.subjectName = us.subjectName and us.userId = ? and s.kind = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -380,6 +387,38 @@ public class JdbcSubjectRepository implements SubjectRepository {
                 subject.setDescription(rs.getString("description"));
                 subject.setKind(rs.getString("kind"));
                 subject.setGrade(rs.getInt("grade"));
+                subject.setUnit(rs.getInt("unit"));
+                subjects.add(subject);
+            }
+            return subjects;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
+    public List<Subject> getRestSubject(User user) {
+        String sql = "select subjectName, description, kind, grade, unit from Subject s" +
+                "where subjectName not in (select subjectName from UserSubject where userId = ?)";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DataSourceUtils.getConnection(dataSource);
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, user.getUserId());
+            rs = pstmt.executeQuery();
+            List<Subject> subjects = new ArrayList<>();
+            while(rs.next()) {
+                Subject subject = new Subject();
+                subject.setSubjectName(rs.getString("subjectName"));
+                subject.setDescription(rs.getString("description"));
+                subject.setKind(rs.getString("kind"));
+                subject.setGrade(rs.getInt("grade"));
+                subject.setUnit(rs.getInt("unit"));
                 subjects.add(subject);
             }
             return subjects;
